@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>가위바위보</title>
+    <script src="times/script.js"></script>
+     <link href="times/style.css" rel="stylesheet" type="text/css" />
+     </head>
+    
+    <meta name="viewport">
+    <title>가위 바위 보 게임</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+<style>
+  *{
+    font-family: 'Poor Story', cursive;
+  }
+  </style>
+    <link href="GAME/style.css" rel="stylesheet" type="text/css" />
+     <script src="GAME/script.js"></script>
+  </head>
+  <body>
+    <h1 class="h1">가위 바위 보</h1>
+    <br>
+<span class="a">0전 0승 0패 0무 승률 0.00%</span>
+<br>
+<br>
+<span class="b">플레이어 : _<br>봇 : _<br>_</span>
+<br>
+<br>
+<br>
+<span class="c">점수 : 0    최고점수 : 0</span>
+<a href="https://botest.repl.co"> 돌아가기</a>
+    <p>
+       <img src="GAME/img/three.jpg" id="three" class="ccc" width = "16.66666666666667%" onclick="
+       testScreen = this.src
+       aa('가위')
+       "/>
+    <img src="GAME/img/one.jpg" id="two" class="ddd" width = "16.66666666666667%" onclick="testScreen = this.src
+    aa('바위')
+    " />
+    <img src="GAME/img/two.jpg" id="twoo" class="eee" width = "16.66666666666667%" onclick="
+    testScreen = this.src
+    aa('보')
+    " />
+    </p>
+    </h1>가위바위보 게임</h1>
+  </body>
+</html>

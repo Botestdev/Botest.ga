@@ -1,0 +1,66 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Covid-19</title>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="style.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="style.css">
+	<style>
+          .main {
+	    background-color: #2e494f;
+            color: #13d7e5;	
+	  }
+	</style>
+
+  <title>코로나 확진자 그래프
+  </title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.css">
+</head>
+<body>
+    <div id="chart"></div>
+</body>
+<script>
+    const drawChart = chartData => // Chart 그리기를 함수로 만들기
+        bb.generate({
+            bindto: "#chart",
+            data: {
+                columns: [
+                    chartData["확진자"],  // 가공한 데이터를 차트 데이터로 사용!
+                    chartData["사망자"]   // 실제 전달되는 값은 [ "사망자", "1", "1", "2", ... ]
+                ],
+            }
+        });
+
+    const csvToJson = csv => {
+        const lines = csv.split('\n').filter(line => line && line !== '');
+        const headers = lines[0].split(',');
+
+        const json = {};
+        headers.forEach(header => json[header] = [])
+
+        lines.forEach(line => {
+            const values = line.split(',');
+
+            for (let i = 0; i < headers.length; i++) {
+                json[headers[i]].push(values[i]);
+            }
+        })
+
+        return json;
+    }
+
+    axios.get('https://raw.githubusercontent.com/imbyungjun/TIL/corona/corona-statistics.csv')
+        .then(res => csvToJson(res.data))  // 데이터 형식 변환
+        .then(chartData => drawChart(chartData));  // 차트 그리기
+</script>
+<h5>
+  코로나 확진자 그래프</h5>
+  <a href="https://botest.repl.co"> 돌아가기</a>
+</html>
